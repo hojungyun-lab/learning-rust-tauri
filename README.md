@@ -37,12 +37,16 @@ nvm install --lts
 nvm use --lts
 
 # 3. 설치 확인
-node -v   # 예: v22.x.x
-npm -v    # 예: 10.x.x
+node -v   # 예: v24.x.x
+npm -v    # 예: 11.x.x
 
-# 4. Rust 컴파일러 및 패키지 매니저 확인
+# 4. pnpm 설치 (이 프로젝트의 패키지 매니저)
+npm install -g pnpm
+pnpm -v   # 예: 10.x.x
+
+# 5. Rust 컴파일러 및 패키지 매니저 확인
 rustc --version   # Rust 컴파일러: .rs 소스 코드를 네이티브 바이너리로 변환
-cargo --version   # Rust 패키지 매니저 겸 빌드 도구: 의존성 관리, 빌드, 테스트 실행 등 (npm 역할)
+cargo --version   # Rust 패키지 매니저 겸 빌드 도구: 의존성 관리, 빌드, 테스트 실행 등
 ```
 > 💡 프로젝트 루트에 `.nvmrc` 파일을 만들어 Node 버전을 고정하면, `nvm use` 한 줄로 팀원 모두가 동일한 환경을 재현할 수 있습니다.
 
@@ -52,17 +56,21 @@ cargo --version   # Rust 패키지 매니저 겸 빌드 도구: 의존성 관리
 빈 프로젝트를 직접 구축하며 학습하고 싶다면, 아래의 명령어를 통해 CLI 스캐폴딩을 시작하세요:
 ```bash
 # 최신 Tauri 앱 생성 마법사 실행
-npm create tauri-app@latest
+pnpm create tauri-app@latest
 
-# 프롬프트 안내에 따라 환경을 선택합니다:
-# 1. Project name: (예: my-learning-app)
-# 2. Choose which language to use for your frontend: (예: TypeScript / JavaScript / Rust)
-# 3. Choose your UI template: (예: Vanilla / Vue / React / Svelte / Solid 등)
-# 4. Choose your UI flavor: (예: TypeScript)
+# 프롬프트 안내에 따라 아래와 같이 환경을 선택합니다:
+# ✔ Project name · my-learning-app
+# ✔ Identifier · com.hojungyun.my-learning-app
+# ✔ Choose which language to use for your frontend · TypeScript / JavaScript
+# ✔ Choose your package manager · pnpm
+# ✔ Choose your UI template · Svelte
+# ✔ Choose your UI flavor · TypeScript
 
 cd my-learning-app
-npm install      # 프론트엔드 의존성 설치
-npm run tauri dev # Tauri 앱(프론트+백엔드) 로컬 개발 서버 실행!
+pnpm install      # 프론트엔드 의존성 설치
+pnpm tauri dev    # Tauri 앱(프론트+백엔드) 로컬 개발 서버 실행!
+# ⚠️ 최초 실행 시 ".svelte-kit/tsconfig.json을 찾을 수 없다"는 경고가 뜰 수 있습니다.
+#    이는 SvelteKit이 첫 빌드 시 자동 생성하는 폴더이므로 무시해도 됩니다. 두 번째 실행부터 사라집니다.
 ```
 
 ### 3️⃣ 데모(Examples) 코드 직접 실행해보기
@@ -70,8 +78,8 @@ npm run tauri dev # Tauri 앱(프론트+백엔드) 로컬 개발 서버 실행!
 ```bash
 # 기초 데모 앱 실행
 cd examples/basic-app
-npm install
-npm run tauri dev
+pnpm install
+pnpm tauri dev
 ```
 
 ---
@@ -103,4 +111,4 @@ npm run tauri dev
 ---
 
 ## 📋 빠른 참조 (Cheatsheet)
-각 가이드를 학습하는 도중 즉각적인 힌트가 필요할 땐 [**CHEATSHEET.md**](./CHEATSHEET.md)를 확인하세요. 에러 처리, Command 등록 등 가장 자주 쓰이는 코드 스니펫만 모아 두었습니다.
+각 가이드를 학습하는 도중 즉각적인 힌트가 필요할 땐 [CHEATSHEET.md](./CHEATSHEET.md)를 확인하세요. 에러 처리, Command 등록 등 가장 자주 쓰이는 코드 스니펫만 모아 두었습니다.
